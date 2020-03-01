@@ -1,5 +1,6 @@
 // @flow
 
+/* eslint-disable import/no-unresolved */
 import _InlineStyle from '../models/InlineStyle';
 import _StyledNativeComponent from '../models/StyledNativeComponent';
 
@@ -7,15 +8,14 @@ import css from '../constructors/css';
 import constructWithOptions from '../constructors/constructWithOptions';
 import ThemeProvider, { ThemeConsumer, ThemeContext } from '../models/ThemeProvider';
 import withTheme from '../hoc/withTheme';
+import useTheme from '../hooks/useTheme';
 import isStyledComponent from '../utils/isStyledComponent';
 
 import type { Target } from '../types';
 
 const reactNative = require('react-native');
 
-const { StyleSheet } = reactNative;
-
-const InlineStyle = _InlineStyle(StyleSheet);
+const InlineStyle = _InlineStyle(reactNative.StyleSheet);
 const StyledNativeComponent = _StyledNativeComponent(InlineStyle);
 const styled = (tag: Target) => constructWithOptions(StyledNativeComponent, tag);
 
@@ -41,5 +41,5 @@ aliases.split(/\s+/m).forEach(alias =>
   })
 );
 
-export { css, isStyledComponent, ThemeProvider, ThemeConsumer, ThemeContext, withTheme };
+export { css, isStyledComponent, ThemeProvider, ThemeConsumer, ThemeContext, withTheme, useTheme };
 export default styled;
